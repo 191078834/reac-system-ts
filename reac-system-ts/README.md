@@ -1,46 +1,27 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+// function componment study
+https://www.51cto.com/article/716710.html?u_atoken=99f59ef7-89a4-49f3-b73b-ae69d7c99c8a&u_asession=014iaNy-tr6s6deKiPhRJxT6a7EE1iUz28byO3ScJZME18h6JWIL2mkHt-vSKzkVNPX0KNBwm7Lovlpxjd_P_q4JsKWYrT3W_NKPr8w6oU7K-LsSwUyBYQzrlz7DpNoroThUF3o-sVtq6Wun3JL3SJe2BkFo3NEHBv0PZUm6pbxQU&u_asig=05cR52hcjdMgru4HQOxSwv1y3tKuQ3NHjutIaoTQ_C5UrNEt7WbVtqOZ27Q9cDPdd7hzBB03xBbfJ8NyMmFkMNJNtF11dQnLo9Fmt4nSJX-5jwQihtQQyJ4DP4fttLScq-2EsjocTxfeblnY0cJEWScSnmiXGaXSYhJNnHkYNne8r9JS7q8ZD7Xtz2Ly-b0kmuyAKRFSVJkkdwVUnyHAIJzbQdMgkKcRyYGeH11lf3Z_BpMJ1LtjjpRJAs5GB7AlOZom7nzSzR1LP16f45fIKp-e3h9VXwMyh6PgyDIVSG1W84rH_S7JQSAUwi12Pb0dS6UQZR-hBj4Y7oilnvJDT3FG5e3UvDmDqm-YiJVDZmJxq93BEJZSIk-q-RtG4GOmKJmWspDxyAEEo4kbsryBKb9Q&u_aref=KO4d%2FTSvZLF%2BX3R9EH12eDm7ckc%3D
 
-## Available Scripts
 
-In the project directory, you can run:
+// 范型
+https://zhuanlan.zhihu.com/p/149767010
 
-### `npm start`
+1.接口可以合并 type不可以 
+2. 继承方式不一样
+**************************************************************************************************************
+//配置*重要
+https://baijiahao.baidu.com/s?id=1716649947174314729&wfr=spider&for=pc
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+npm i eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-react --dev
+根目录下创建  eslintrc.js
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+npm i prettier eslint-config-prettier eslint-plugin-prettier --dev
+根目录下创建  .prettierrc.js
 
-### `npm test`
-www
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+创建
+.vscode/settings.json
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

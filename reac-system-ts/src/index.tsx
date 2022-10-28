@@ -1,20 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './pages/App/App';
-import { ThemeProvider } from '@mui/material/styles';
+// import { ThemeProvider } from '@mui/material/styles';
 import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
-
-import {dashBoardTheme} from "./dashBoardTheme"
+import { StyledEngineProvider } from '@mui/material/styles';
+// import { dashBoardTheme } from "./dashBoardTheme"
 
 import App from './pages/App/App';
 import TestApp from './pages/TestApp/TestApp';
-import ForgetList from './pages/ForgetList/ForgetList';
-import WordList from'./pages/WordList/WordList';
+// import ForgetList from './pages/ForgetList/ForgetList';
+// import WordList from './pages/WordList/WordList';
 
 
 const root = ReactDOM.createRoot(
@@ -22,18 +21,19 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-   <ThemeProvider theme={dashBoardTheme}>
-    <BrowserRouter>
+    <StyledEngineProvider injectFirst>
+      {/* <ThemeProvider theme={dashBoardTheme}> */}
+      <BrowserRouter>
         <Routes>
           <Route path="/*" element={<App />}>
-          <Route path="wordlist" element={<WordList />} />
-          <Route path="everydaylist" element={<TestApp />} />
-          <Route path="forgetlist" element={<ForgetList />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>,
-  </ThemeProvider>
-
+            {/* <Route path="wordlist" element={<WordList />} /> */}
+              <Route path="everydaylist" element={<TestApp />} />
+              {/* <Route path="forgetlist" element={<ForgetList />} /> */}
+          </Route>
+        </Routes>
+      </BrowserRouter>,
+      {/* </ThemeProvider> */}
+    </StyledEngineProvider>
   </React.StrictMode>
 );
 

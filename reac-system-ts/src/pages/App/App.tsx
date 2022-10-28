@@ -1,9 +1,19 @@
-import React from 'react';
+import * as React from 'react';
+import Grid from "@mui/material/Grid";
+import { Outlet } from "react-router-dom";
+import Navbar from '../../componments/Navbar/Navbar'
 
-function App() {
+
+
+const App: React.FC<{}> = () => {
+
   return (
-   <div>app</div>
-  );
+    <Grid container>
+      <Navbar />
+      <Outlet />
+    </Grid>
+
+  )
 }
 
-export default App;
+export default App

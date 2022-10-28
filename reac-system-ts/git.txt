@@ -1,0 +1,105 @@
+git使用方法
+
+git init
+git config --local user.name 191078834
+git config --local user.email 191078834@qq.com
+git config --local -l
+
+添加密钥
+ssh-keygen -t rsa -C "191078834@qq.com"
+
+删除远端文件 
+
+rm fileName  
+git add fileName
+git commit -m ''
+git push
+
+删除本地文件 即使下次pull 也不会把本地删除的文件更新回来
+git rm fileName
+git add fileName
+git commit -m ''
+git push
+
+
+git checkout -- fileName 恢复缓存区文件
+git status 查看状态
+
+git restore --staged  表示撤销暂存区的修改，将文件状态恢复到未 add 之前
+
+查看版本历史
+git log（可任意查看版本历史）最少7位
+
+版本回退
+git reset --hard  版本号
+版本回退的上一个版本
+git reflog
+
+
+获取分支名
+git remote
+
+连接远端主分支
+git fetch origin master
+
+更新单个文件
+git checkout 本地分支名 需要拉取的文件
+
+############################
+
+切换本地分支
+git checkout 分支名
+在当前分支下创建my-test的本地分支分支
+git checkout -b my-test
+
+将my-test分支推送到远程
+git push origin my-test
+
+将本地分支my-test关联到远程分支my-test上
+git branch --set-upstream-to=origin/my-test
+git branch -a //查看远程分支 
+
+########################################
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Automatic merge failed; fix conflicts and then commit the result.解决方法
+1.丢弃本地提交，强制回到线上最新版本
+git fetch --all
+git reset --hard origin/你需要下拉的分支(默认master)
+git fetch
+
+あるいは
+2.保存本地提交
+git reset -- abort
+git reset -- merge
+git commit -m '提交信息'
+git pull
+
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+删除本地分支
+git branch -d 分支名
+删除远端分支
+git push origin --delete 分支名
+
+
+
+
+
+
+
+
+①新しいリポジトリを新規する
+
+echo "# reactSystem" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/191078834/reactSystem.git
+git push -u origin main
+
+②リポジトリ存在する場合
+git remote add origin https://github.com/191078834/reactSystem.git
+git branch -M main
+git push -u origin main	

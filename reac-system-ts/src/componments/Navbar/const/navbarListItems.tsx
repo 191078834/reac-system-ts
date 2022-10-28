@@ -3,13 +3,13 @@ import SpellcheckIcon from '@mui/icons-material/Spellcheck';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 
-interface mainNavBarItem{
+export interface mainNavBarItem {
     id: number,
-    icon: any,   
+    icon: any,
     label: String,
     route: String
 }
-const mainNavBarItems:Array<mainNavBarItem> = [
+export const mainNavBarItems: Array<mainNavBarItem> = [
     {
         id: 0,
         icon: <SpellcheckIcon />,
@@ -36,4 +36,4 @@ const mainNavBarItems:Array<mainNavBarItem> = [
 ]
 
 
-export default mainNavBarItems
+
