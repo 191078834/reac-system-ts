@@ -23,5 +23,10 @@ npm i prettier eslint-config-prettier eslint-plugin-prettier --dev
 
 
 
+// form control componments
+React Hook Form
+
+
+
 
 
