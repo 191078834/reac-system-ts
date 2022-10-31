@@ -39,7 +39,7 @@ const Toolbar: React.FC<IpropsToolbar> = () => {
 const ThemedButton: React.FC<{}> = () => {
     const theme = useContext<any>(ThemeContext);
     return (
-        <button className="common-button" style={{ background: theme.background, color: theme.foreground }}>
+        <button  style={{ background: theme.background, color: theme.foreground }}>
             I am styled by theme context!
         </button>
     );

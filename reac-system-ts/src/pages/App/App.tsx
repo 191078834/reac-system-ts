@@ -8,7 +8,7 @@ import Navbar from '../../componments/Navbar/Navbar'
 const App: React.FC<{}> = () => {
 
   return (
-    <Grid container>
+    <Grid container={true}>
       <Navbar />
       <Outlet />
     </Grid>
