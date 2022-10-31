@@ -22,7 +22,7 @@ export const mainNavBarItems: Array<mainNavBarItem> = [
         id: 1,
         icon: <ArrowForwardIosIcon />,
         label: '毎日単語',
-        route: 'everydaylist'
+        route: 'everydayword'
 
 
     },

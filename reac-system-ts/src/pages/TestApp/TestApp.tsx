@@ -28,9 +28,10 @@ const TestApp: React.FC<{}> = () => {
 export interface IpropsToolbar {
     children?: React.ReactNode
 }
-const Toolbar: React.FC<IpropsToolbar> = () => {
+const Toolbar: React.FC<IpropsToolbar> = (props) => {
     return (
         <div style={{ marginLeft: '500px' }}>
+            {props.children}
             <ThemedButton />
         </div>
     );
