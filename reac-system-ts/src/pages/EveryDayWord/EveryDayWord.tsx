@@ -6,6 +6,7 @@ const EveryDayWord: React.FC<{}> = () => {
     let wordRef = React.useRef<HTMLInputElement>(null);
     let translateRef = React.useRef<HTMLInputElement>(null);
     const [hatuo, setHatuo] = React.useState<String>("");
+    // const [ajaxUrl, setAjaxUrl] = React.useState<String>("");
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
@@ -13,8 +14,21 @@ const EveryDayWord: React.FC<{}> = () => {
         console.log(wordRef.current?.value, hatuo, translateRef.current?.value)
         // alert(wordRef.current?.value);
     }
-    const handleChange =(e:React.ChangeEvent<HTMLInputElement>)=>{
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setHatuo(e.target.value);
+    }
+    const handleOnblur = (e: React.FocusEvent<HTMLInputElement>) => {
+        e.preventDefault()
+        fetch("http://localhost:8090/everydayword/wordcheck", {
+            method: "POST",
+            mode: "cors",
+            headers: {
+                "Accept": "application/json,text/plain,*/*",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ word: wordRef.current?.value })
+        })
+        
     }
 
 
@@ -30,6 +44,7 @@ const EveryDayWord: React.FC<{}> = () => {
                         required
                         label="単語"
                         inputRef={wordRef}
+                        onBlur={handleOnblur}
                     />
                 </Grid>
                 <Grid item xs={5}>

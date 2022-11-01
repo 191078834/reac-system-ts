@@ -6,11 +6,11 @@ const bodyParser = require('body-parser');    // 引入body-parser模块
 
 
 
-
+//返回单词列表
 const getData = (filename, res, req) => {
 
     // 単語のテキストのパースを設定
-const dirname = __dirname.substring(0, __dirname.lastIndexOf('\\'));
+    const dirname = __dirname.substring(0, __dirname.lastIndexOf('\\'));
 
     function fn(filename) {
         return new Promise(function (resolve, reject) {
@@ -34,7 +34,7 @@ const dirname = __dirname.substring(0, __dirname.lastIndexOf('\\'));
                     "word": newElement[0],
                     "loumaji": newElement[1],
                     "translate": newElement[2],
-                    "putTime":  newElement[3]
+                    "putTime": newElement[3]
                 }
                 Allarray.push(jsonElement);
 
@@ -52,16 +52,74 @@ const dirname = __dirname.substring(0, __dirname.lastIndexOf('\\'));
     wordReadApi(filename).then(data => {
 
         if (req.query.word !== undefined || req.query.fromTime !== undefined || req.query.toTime !== undefined) {
-            let retData =[]
-            if (req.query.word!==''){
-                 retData = data.filter((element) => element.loumaji.includes(req.query.word) === true)
+            let retData = []
+            if (req.query.word !== '') {
+                retData = data.filter((element) => element.loumaji.includes(req.query.word) === true)
             }
-           
+
             res.json({ "data": retData })
             return
         }
         res.json({ "data": data })
     })
+
+}
+
+//check word
+const checkWord = (filename, res, req) => {
+
+    // 単語のテキストのパースを設定
+    const dirname = __dirname.substring(0, __dirname.lastIndexOf('\\'));
+
+    function fn(filename) {
+        return new Promise(function (resolve, reject) {
+            // readFile(path,[encoding],callback)  异步读取文件全部内容
+            let content = fs.readFile(path.join(dirname, filename), 'utf8', (err, data) => {
+                err ? reject(err) : resolve(data);
+            })
+        })
+    }
+
+    const wordReadApi = async (fileName) => {
+
+        let FileArrayresult = await fn(fileName).then((result) => {
+            var newRowArr = result.split(/\r/);
+            var Allarray = Array.of(newRowArr.length);
+            newRowArr.forEach((element, index) => {
+                let newElement = element.replace(/\n/, '').split(/\s/)
+                // push /unshift /contact
+                let jsonElement = {
+                    "id": index + 1,
+                    "word": newElement[0],
+                    "loumaji": newElement[1],
+                    "translate": newElement[2],
+                    "putTime": newElement[3]
+                }
+                Allarray.push(jsonElement);
+
+            });
+            //删除最后一个元素
+            // Allarray.pop();
+            //删除第一个元素
+            Allarray.shift()
+            return Allarray
+        }).then(data => data)
+
+        return FileArrayresult
+
+    }
+    wordReadApi(filename).then(data => {
+
+        if (req.body.loumaji === undefined) {
+            data.find((element) => element.word === req.body.word) === undefined ?
+                res.json({ status: "ok", message: "単語ありません" }) :
+                res.json({ "status": "default", message: "単語があった" })
+
+        }
+
+        // res.json({ "data": retData })
+    }
+    )
 
 }
 
@@ -135,7 +193,7 @@ app.get('/wordlist/search', function (req, res) {
 
     //get获取数据
     console.log('get', req.query);
-    getData('word.txt',res, req)
+    getData('word.txt', res, req)
     // res.json()
 
 });
@@ -143,6 +201,11 @@ app.get('/wordlist/search', function (req, res) {
 app.post('/wordlist/update', (req, res) => {
     console.log('reqBody', req.body);
     res.json({ data: req.body, status: "ok" });
+})
+
+app.post('/everydayword/wordcheck', (req, res) => {
+    checkWord('word.txt', res, req)
+    // res.json({ data: req.body, status: "ok" });
 })
 
 /**
