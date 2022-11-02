@@ -1,10 +1,10 @@
 import * as React from 'react'
 import Box from '@mui/material/Box';
-import { useForm, Controller } from "react-hook-form";
-
+import { useForm, Controller } from 'react-hook-form';
+import useAddEveryDayWordState from '../../api/useAddEveryDayWordState'
 import { Button, Grid, TextField } from '@mui/material';
 
-interface IFormInput{
+export interface IFormInput {
     word: string,
     lomazi: string,
     translate: string
@@ -16,26 +16,19 @@ const EveryDayWord: React.FC<{}> = () => {
 
 
     // let wordRef = React.useRef<HTMLInputElement|undefined>(undefined);
-   
-    // const [ajaxUrl, setAjaxUrl] = React.useState<String>("");
 
-    const onSubmit = (data: IFormInput)=>console.log(data);
-    const handlerOnBlur = (data: IFormInput)=>(data.word.length<1||data.lomazi.length<1||data.translate.length<1)? setSubmitDisabled(true): setSubmitDisabled(false)
-        
-       
-       
-    
+    // const [ajaxUrl, setAjaxUrl] = React.useState<String>("");
+    const { respMessage, isLoading, isError, isAdded, fetchDdataFun } = useAddEveryDayWordState()
+    console.log(respMessage, isLoading, isError, isAdded, fetchDdataFun)
+
+    const onSubmit = (data: IFormInput) => fetchDdataFun(data)
+    const handlerOnBlur = (data: IFormInput) => (data.word.length < 1 || data.lomazi.length < 1 || data.translate.length < 1) ? setSubmitDisabled(true) : setSubmitDisabled(false)
+
+
+
+
     // const handleOnblur = (e: React.FocusEvent<HTMLInputElement>) => {
     //     e.preventDefault()
-    //     fetch("http://localhost:8090/everydayword/wordcheck", {
-    //         method: "POST",
-    //         mode: "cors",
-    //         headers: {
-    //             "Accept": "application/json,text/plain,*/*",
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify({ word: 1 })
-    //     })
 
     // }
 
@@ -47,12 +40,12 @@ const EveryDayWord: React.FC<{}> = () => {
             <Grid container spacing={1} >
                 {/* 1行目 */}
                 <Grid item xs={4}>
-                <Controller
-                    render={({ field }) => <TextField {...field} onBlur={handleSubmit(handlerOnBlur)}  label="単語"/>}
-                    name="word"
-                    
-                    control={control}
-                    defaultValue=""
+                    <Controller
+                        render={({ field }) => <TextField {...field} onBlur={handleSubmit(handlerOnBlur)} label="単語" />}
+                        name="word"
+
+                        control={control}
+                        defaultValue=""
                     />
                 </Grid>
                 <Grid item xs={5}>
@@ -90,7 +83,7 @@ const EveryDayWord: React.FC<{}> = () => {
                 </Grid>
             </Grid>
         </Box>
-      
+
 
     )
 }

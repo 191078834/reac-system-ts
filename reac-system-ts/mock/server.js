@@ -56,7 +56,6 @@ const getData = (filename, res, req) => {
             if (req.query.word !== '') {
                 retData = data.filter((element) => element.loumaji.includes(req.query.word) === true)
             }
-
             res.json({ "data": retData })
             return
         }
@@ -109,13 +108,13 @@ const checkWord = (filename, res, req) => {
 
     }
     wordReadApi(filename).then(data => {
+        console.log(req.body)
+        // if (req.body.data.loumaji === undefined) {
+        data.find((element) => element.word === req.body.word) === undefined ?
+            res.json({ status: "ok", message: "単語ありません" }) :
+            res.json({ "status": "false", message: "単語があった" })
 
-        if (req.body.loumaji === undefined) {
-            data.find((element) => element.word === req.body.word) === undefined ?
-                res.json({ status: "ok", message: "単語ありません" }) :
-                res.json({ "status": "default", message: "単語があった" })
-
-        }
+        // }
 
         // res.json({ "data": retData })
     }
@@ -204,6 +203,7 @@ app.post('/wordlist/update', (req, res) => {
 })
 
 app.post('/everydayword/wordcheck', (req, res) => {
+    console.log(req.body)
     checkWord('word.txt', res, req)
     // res.json({ data: req.body, status: "ok" });
 })
