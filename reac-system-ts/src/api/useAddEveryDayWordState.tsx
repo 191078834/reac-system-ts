@@ -77,7 +77,7 @@ const initalFetchData: IFormInput = {
     translate: ''
 }
 
-const useAddEveryDayWordState = (): any => {
+const useAddEveryDayWordState = (): T => {
 
     const [fetchData, setFetchData] = useState<IFormInput>(initalFetchData);
     const [state, dispatch] = useReducer(useAddReducer, initialState);
@@ -108,7 +108,7 @@ const useAddEveryDayWordState = (): any => {
 
     const fetchDdataFun = (FormInput: IFormInput): void => setFetchData(FormInput)
 
-    return { ...state, fetchDdataFun }
+    return { ...state, fetchDdataFun }  as T
 
 
 
