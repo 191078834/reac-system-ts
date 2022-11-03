@@ -5,7 +5,7 @@ import Navbar from '../../componments/Navbar/Navbar'
 
 
 
-const App: React.FC<{}> = () => {
+const App=() => {
 
   return (
     <Grid container={true}>

@@ -17,7 +17,6 @@ const EveryDayWord: React.FC<{}> = () => {
 
     // let wordRef = React.useRef<HTMLInputElement|undefined>(undefined);
 
-    // const [ajaxUrl, setAjaxUrl] = React.useState<String>("");
     const { respMessage, isLoading, isError, isAdded, fetchDdataFun } = useAddEveryDayWordState()
     console.log(respMessage, isLoading, isError, isAdded, fetchDdataFun)
 
@@ -29,9 +28,7 @@ const EveryDayWord: React.FC<{}> = () => {
 
     // const handleOnblur = (e: React.FocusEvent<HTMLInputElement>) => {
     //     e.preventDefault()
-
     // }
-
 
 
     return (
