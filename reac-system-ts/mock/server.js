@@ -108,13 +108,20 @@ const checkWord = (filename, res, req) => {
 
     }
     wordReadApi(filename).then(data => {
-        console.log(req.body)
-        // if (req.body.data.loumaji === undefined) {
-        data.find((element) => element.word === req.body.word) === undefined ?
-            res.json({ status: "ok", message: "単語ありません" }) :
-            res.json({ "status": "false", message: "単語があった" })
 
-        // }
+        if (req.body.data.word !== '') {
+            data.find((element) => element.word === req.body.data.word) === undefined ?
+                res.json({ status: "ok", message: "単語ありません" }) :
+                res.json({ "status": "false", message: "単語があった" })
+        } else {
+            res.json({ "status": "false", message: "" })
+            return
+        }
+
+        if (data.find((element) => element.word === req.body.word) === undefined) {
+            console.log('continue')
+        }
+
 
         // res.json({ "data": retData })
     }
@@ -203,7 +210,6 @@ app.post('/wordlist/update', (req, res) => {
 })
 
 app.post('/everydayword/wordcheck', (req, res) => {
-    console.log(req.body)
     checkWord('word.txt', res, req)
     // res.json({ data: req.body, status: "ok" });
 })
