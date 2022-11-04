@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import { useForm, Controller } from 'react-hook-form';
 import useAddEveryDayWordState from '../../api/useAddEveryDayWordState'
 import { Button, Grid, TextField } from '@mui/material';
+import Alert from '@mui/material/Alert';
+import Collapse from '@mui/material/Collapse';
 
 export interface IFormInput {
     word: string,
@@ -17,13 +19,11 @@ const EveryDayWord: React.FC<{}> = () => {
 
     // let wordRef = React.useRef<HTMLInputElement|undefined>(undefined);
 
-    const { respMessage, isLoading, isError, isAdded, fetchDdataFun } = useAddEveryDayWordState()
-    console.log(respMessage, isLoading, isError, isAdded, fetchDdataFun)
+    const { respMessage, isLoading, isError, isAdded, fetchDataFun } = useAddEveryDayWordState()
+    console.log(respMessage, isLoading, isError, isAdded, fetchDataFun)
 
-    const onSubmit = (data: IFormInput) => fetchDdataFun(data)
+    const onSubmit = (data: IFormInput) => fetchDataFun(data)
     const handlerOnBlur = (data: IFormInput) => (data.word.length < 1 || data.lomazi.length < 1 || data.translate.length < 1) ? setSubmitDisabled(true) : setSubmitDisabled(false)
-
-
 
 
     // const handleOnblur = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -33,8 +33,15 @@ const EveryDayWord: React.FC<{}> = () => {
 
     return (
 
-        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ maxWidth: '100%' }}>
+        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ maxWidth: '100%', ml: 30 }}>
             <Grid container spacing={1} >
+                <Grid item xs={12}>
+                    <Collapse in={isError} >
+                        <Alert severity="warning">
+                            {respMessage}
+                        </Alert>
+                    </Collapse>
+                </Grid>
                 {/* 1行目 */}
                 <Grid item xs={4}>
                     <Controller
@@ -80,8 +87,6 @@ const EveryDayWord: React.FC<{}> = () => {
                 </Grid>
             </Grid>
         </Box>
-
-
     )
 }
 

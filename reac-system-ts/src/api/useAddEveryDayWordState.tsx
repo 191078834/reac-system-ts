@@ -1,5 +1,6 @@
 import { useEffect, useState, useReducer } from "react";
 import { IFormInput } from '../pages/EveryDayWord/EveryDayWord';
+import { useNavigate } from "react-router-dom";
 
 export type State = {
     respMessage: string,
@@ -10,6 +11,8 @@ export type State = {
 
 export type Action = {
     type: 'FETCH_ADD_INIT'
+} | {
+    type: 'INIT_SUCCESS'
 } | {
     type: 'FETCH_ADD_SUCCESS',
     payload: string,
@@ -29,7 +32,14 @@ export const useAddReducer = (state: State, action: Action): State => {
             return {
                 ...state,
                 respMessage: 'init',
-                isLoading: true,
+                isLoading: false,
+                isError: false,
+                isAdded: false
+            }
+        case 'INIT_SUCCESS':
+            return {
+                ...state,
+                isLoading: false,
                 isError: false,
                 isAdded: false
             }
@@ -53,7 +63,7 @@ export const useAddReducer = (state: State, action: Action): State => {
             return {
                 ...state,
                 respMessage: action.payload,
-                isLoading: false,
+                isLoading: true,
                 isError: true,
                 isAdded: false
             }
@@ -81,6 +91,7 @@ const useAddEveryDayWordState = (): any => {
 
     const [fetchData, setFetchData] = useState<IFormInput>(initalFetchData);
     const [state, dispatch] = useReducer(useAddReducer, initialState);
+    const navigate = useNavigate();
 
     useEffect((): void => {
         const doFetch = async () => {
@@ -96,19 +107,22 @@ const useAddEveryDayWordState = (): any => {
                     },
                     body: JSON.stringify({ data: fetchData })
                 }).then(res => res?.json()).then(data => data)
-                res.status === "ok" ?
-                    dispatch({ type: 'FETCH_ADD_SUCCESS', payload: res.message }) :
-                    dispatch({ type: 'FETCH_ADD_FAILURE', payload: res.message })
+                if (res.status === "ok") {
+                    dispatch({ type: 'FETCH_ADD_SUCCESS', payload: res.message })
+                    navigate('kakunin', { state: fetchData })
+                } else {
+                    res.message === '' ? dispatch({ type: 'INIT_SUCCESS' }) : dispatch({ type: 'FETCH_ADD_FAILURE', payload: res.message })
+                }
             } catch (error) {
-                dispatch({ type: 'NET_ERROR_FETCH_ADD_FAILURE', payload: 'net error' })
+                dispatch({ type: 'NET_ERROR_FETCH_ADD_FAILURE', payload: ' ネットワークから切断された' })
             }
         }
         doFetch()
     }, [fetchData])
 
-    const fetchDdataFun = (FormInput: IFormInput): void => setFetchData(FormInput)
+    const fetchDataFun = (FormInput: IFormInput): void => setFetchData(FormInput)
 
-    return { ...state, fetchDdataFun }
+    return { ...state, fetchDataFun }
 
 
 
