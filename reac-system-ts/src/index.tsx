@@ -29,8 +29,8 @@ root.render(
           <Route path="/*" element={<App />}>
             {/* <Route path="wordlist" element={<WordList />} /> */}
             <Route path="forgetlist" element={<TestApp />} />
-            <Route path="everydayword" element={<EveryDayWord />} />
-            <Route path="everydayword/kakunin" element={<Kakunin />} />
+            <Route path="everydayword/*" element={<EveryDayWord />} />
+              <Route path="everydayword/kakunin/*" element={<Kakunin />} />
 
           </Route>
         </Routes>
