@@ -16,6 +16,7 @@ const EveryDayWord: React.FC<{}> = () => {
     const { control, handleSubmit } = useForm<IFormInput>();
     const [submitDisabled, setSubmitDisabled] = React.useState<boolean>(true);
     let inputData = JSON.parse(window.localStorage.getItem('inputData') as string)
+    console.log(inputData)
     // let jsonObj =JSON.parse(inputData)
 
 
@@ -39,7 +40,7 @@ const EveryDayWord: React.FC<{}> = () => {
             <Grid container spacing={1} >
                 <Grid item xs={12}>
                     <Collapse in={isError} >
-                        <Alert severity="warning">
+                        <Alert severity="warning" sx={{width:"80%"}}>
                             {respMessage}
                         </Alert>
                     </Collapse>
@@ -50,14 +51,14 @@ const EveryDayWord: React.FC<{}> = () => {
                         render={({ field }) => <TextField {...field} onBlur={handleSubmit(handlerOnBlur)} label="単語" />}
                         name="word"
                         control={control}
-                        defaultValue={inputData.word}
+                        defaultValue={inputData===null?"":inputData.word}
                     />
                 </Grid>
                 <Grid item xs={5}>
                     <Controller
                         render={({ field }) => <TextField {...field} label="発音" onBlur={handleSubmit(handlerOnBlur)} />}
                         name='lomazi'
-                        defaultValue={inputData.lomazi}
+                        defaultValue={inputData===null?"":inputData.lomazi}
                         control={control}
                     />
                 </Grid>
@@ -65,7 +66,7 @@ const EveryDayWord: React.FC<{}> = () => {
                 <Grid item xs={9}>
                     <Controller
                         name='translate'
-                        defaultValue={inputData.translate}
+                        defaultValue={inputData===null?"":inputData.translate}
                         render={({ field }) => <TextField {...field} sx={{ width: 700, mt: 2 }} label="翻訳" onBlur={handleSubmit(handlerOnBlur)} />}
                         control={control}
                     />

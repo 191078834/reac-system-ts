@@ -120,6 +120,7 @@ const checkWord = (filename, res, req) => {
 
         else if (data.find((element) => element.word === req.body.word) === undefined && req.body.currentTime !== undefined) {
             console.log(req.body);
+            fs.appendFile(path.join(dirname, "t.txt"),'\r'+req.body.currentTime, 'utf8', (error)=>console.log(error))
             res.json({ "status": "ok", message: "単語を追加しました" })
         }
 

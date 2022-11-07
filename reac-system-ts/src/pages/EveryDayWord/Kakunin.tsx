@@ -17,13 +17,6 @@ const Kakunin = () => {
     const [display, setDisplay] = React.useState<string | null>(null);
     const [open, setOpen] = React.useState<boolean>(false)
 
-
-
-    // let wordRef = React.useRef<HTMLInputElement|undefined>(undefined);
-
-    // const { respMessage, isLoading, isError, isAdded, fetchDataFun } = useAddEveryDayWordState()
-    // console.log(respMessage, isLoading, isError, isAdded, fetchDataFun)
-
     const onSubmit = (data: IFormInput): void => {
         let currentTime: string = format(new Date(), 'yyyy/MM/dd', { locale: ja })
         fetch("http://localhost:8090/everydayword/wordcheck", {
@@ -45,12 +38,12 @@ const Kakunin = () => {
     }
 
     return (
-        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ maxWidth: '100%' }}>
+        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ maxWidth: '100%', ml: 30}}>
 
             <Grid container spacing={1} >
                 <Grid item xs={12}>
                     <Collapse in={open} >
-                        <Alert severity="success" >{display}</Alert>
+                        <Alert severity="success" sx={{width:"80%"}}>{display}</Alert>
                     </Collapse>
                 </Grid>
                 {/* 1行目 */}
