@@ -15,12 +15,15 @@ const EveryDayWord: React.FC<{}> = () => {
 
     const { control, handleSubmit } = useForm<IFormInput>();
     const [submitDisabled, setSubmitDisabled] = React.useState<boolean>(true);
+    let inputData = JSON.parse(window.localStorage.getItem('inputData') as string)
+    // let jsonObj =JSON.parse(inputData)
 
 
     // let wordRef = React.useRef<HTMLInputElement|undefined>(undefined);
 
     const { respMessage, isLoading, isError, isAdded, fetchDataFun } = useAddEveryDayWordState()
-    console.log(respMessage, isLoading, isError, isAdded, fetchDataFun)
+    console.log(isLoading, isAdded)
+
 
     const onSubmit = (data: IFormInput) => fetchDataFun(data)
     const handlerOnBlur = (data: IFormInput) => (data.word.length < 1 || data.lomazi.length < 1 || data.translate.length < 1) ? setSubmitDisabled(true) : setSubmitDisabled(false)
@@ -29,7 +32,6 @@ const EveryDayWord: React.FC<{}> = () => {
     // const handleOnblur = (e: React.FocusEvent<HTMLInputElement>) => {
     //     e.preventDefault()
     // }
-
 
     return (
 
@@ -47,16 +49,15 @@ const EveryDayWord: React.FC<{}> = () => {
                     <Controller
                         render={({ field }) => <TextField {...field} onBlur={handleSubmit(handlerOnBlur)} label="単語" />}
                         name="word"
-
                         control={control}
-                        defaultValue=""
+                        defaultValue={inputData.word}
                     />
                 </Grid>
                 <Grid item xs={5}>
                     <Controller
-                        render={({ field }) => <TextField {...field} required label="発音" onBlur={handleSubmit(handlerOnBlur)} />}
+                        render={({ field }) => <TextField {...field} label="発音" onBlur={handleSubmit(handlerOnBlur)} />}
                         name='lomazi'
-                        defaultValue=""
+                        defaultValue={inputData.lomazi}
                         control={control}
                     />
                 </Grid>
@@ -64,8 +65,8 @@ const EveryDayWord: React.FC<{}> = () => {
                 <Grid item xs={9}>
                     <Controller
                         name='translate'
-                        defaultValue=""
-                        render={({ field }) => <TextField {...field} required sx={{ width: 700, mt: 2 }} label="翻訳" onBlur={handleSubmit(handlerOnBlur)} />}
+                        defaultValue={inputData.translate}
+                        render={({ field }) => <TextField {...field} sx={{ width: 700, mt: 2 }} label="翻訳" onBlur={handleSubmit(handlerOnBlur)} />}
                         control={control}
                     />
                 </Grid>

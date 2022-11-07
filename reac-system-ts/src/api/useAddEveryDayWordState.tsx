@@ -94,6 +94,8 @@ const useAddEveryDayWordState = (): any => {
     const navigate = useNavigate();
 
     useEffect((): void => {
+        let storage = window.localStorage;
+        storage.setItem('inputData', JSON.stringify(fetchData));
         const doFetch = async () => {
 
             dispatch({ type: 'FETCH_ADD_INIT' })

@@ -109,17 +109,18 @@ const checkWord = (filename, res, req) => {
     }
     wordReadApi(filename).then(data => {
 
-        if (req.body.data.word !== '') {
+        if (req.body.data.word !== '' && req.body.currentTime === undefined) {
             data.find((element) => element.word === req.body.data.word) === undefined ?
                 res.json({ status: "ok", message: "単語ありません" }) :
                 res.json({ "status": "false", message: "単語があった" })
-        } else {
+        } else if (req.body.data.word === '') {
             res.json({ "status": "false", message: "" })
             return
         }
 
-        if (data.find((element) => element.word === req.body.word) === undefined) {
-            console.log('continue')
+        else if (data.find((element) => element.word === req.body.word) === undefined && req.body.currentTime !== undefined) {
+            console.log(req.body);
+            res.json({ "status": "ok", message: "単語を追加しました" })
         }
 
 
