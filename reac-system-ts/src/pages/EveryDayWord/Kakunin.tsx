@@ -38,16 +38,17 @@ const Kakunin = () => {
     }
 
     return (
-        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ maxWidth: '100%', ml: 30}}>
+        <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ maxWidth: '100%', ml: 10 }}>
 
             <Grid container spacing={1} >
+                {/* 1行目 */}
                 <Grid item xs={12}>
                     <Collapse in={open} >
-                        <Alert severity="success" sx={{width:"80%"}}>{display}</Alert>
+                        <Alert severity="success" sx={{ width: "80%" }}>{display}</Alert>
                     </Collapse>
                 </Grid>
-                {/* 1行目 */}
-                <Grid item xs={4}>
+                {/* 2行目 */}
+                <Grid item xs={12}>
                     <Controller
                         render={({ field }) => <TextField {...field} label="単語" disabled value={uselocation.state.word} />}
                         name="word"
@@ -55,7 +56,8 @@ const Kakunin = () => {
                         control={control}
                     />
                 </Grid>
-                <Grid item xs={5}>
+                {/* 3行目 */}
+                <Grid item xs={12}>
                     <Controller
                         render={({ field }) => <TextField {...field} required label="発音" disabled />}
                         name='lomazi'
@@ -63,21 +65,20 @@ const Kakunin = () => {
                         control={control}
                     />
                 </Grid>
-                {/* 2行目 */}
-                <Grid item xs={9}>
+                {/* 4行目 */}
+                <Grid item xs={12}>
                     <Controller
                         name='translate'
                         defaultValue={uselocation.state.translate}
-                        render={({ field }) => <TextField {...field} required sx={{ width: 700, mt: 2 }} label="翻訳" disabled />}
+                        render={({ field }) => <TextField {...field} required sx={{ width: 400, mt: 2 }} label="翻訳" disabled />}
                         control={control}
                     />
                 </Grid>
-                <Grid item xs={3}>
+
+                {/* 5行目 */}
+                <Grid item xs={5}>
                 </Grid>
-                {/* 3行目 */}
-                <Grid item xs={7}>
-                </Grid>
-                <Grid item xs={1}>
+                <Grid item xs={1} hidden={open}>
                     <Button
                         type="button"
                         onClick={() => navigate(-1)}
@@ -88,12 +89,12 @@ const Kakunin = () => {
                         戻り
                     </Button>
                 </Grid>
-                <Grid item xs={1}>
+                <Grid item xs={1} hidden={open}>
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
-                        sx={{ mt: 1, ml: 20, height: 55 }}
+                        sx={{ ml: 1, mt: 1, height: 55 }}
                     >
                         確認
                     </Button>

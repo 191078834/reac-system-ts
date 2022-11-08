@@ -32,7 +32,7 @@ const getData = (filename, res, req) => {
                 let jsonElement = {
                     "id": index + 1,
                     "word": newElement[0],
-                    "loumaji": newElement[1],
+                    "loumazi": newElement[1],
                     "translate": newElement[2],
                     "putTime": newElement[3]
                 }
@@ -54,7 +54,7 @@ const getData = (filename, res, req) => {
         if (req.query.word !== undefined || req.query.fromTime !== undefined || req.query.toTime !== undefined) {
             let retData = []
             if (req.query.word !== '') {
-                retData = data.filter((element) => element.loumaji.includes(req.query.word) === true)
+                retData = data.filter((element) => element.loumazi.includes(req.query.word) === true)
             }
             res.json({ "data": retData })
             return
@@ -90,7 +90,7 @@ const checkWord = (filename, res, req) => {
                 let jsonElement = {
                     "id": index + 1,
                     "word": newElement[0],
-                    "loumaji": newElement[1],
+                    "lomazi": newElement[1],
                     "translate": newElement[2],
                     "putTime": newElement[3]
                 }
@@ -119,8 +119,14 @@ const checkWord = (filename, res, req) => {
         }
 
         else if (data.find((element) => element.word === req.body.word) === undefined && req.body.currentTime !== undefined) {
-            console.log(req.body);
-            fs.appendFile(path.join(dirname, "t.txt"),'\r'+req.body.currentTime, 'utf8', (error)=>console.log(error))
+            const txt_space_string = " ";
+            let inputData = '\r' +
+                req.body.data.word + txt_space_string +
+                req.body.data.lomazi + txt_space_string +
+                req.body.data.translate + txt_space_string +
+                req.body.currentTime
+
+            fs.appendFile(path.join(dirname, filename), inputData, 'utf8', (error) => error !== null ? console.log(error) : console.log('追加する単語は:', inputData))
             res.json({ "status": "ok", message: "単語を追加しました" })
         }
 

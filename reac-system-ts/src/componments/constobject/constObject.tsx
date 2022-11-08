@@ -18,7 +18,7 @@ export const kinyuTableColumns = [
         editable: true
     },
     {
-        field: 'loumaji',
+        field: 'loumazi',
         headerName: 'ローマ字',
         // type: 'singleSelect',
         width: 200,
