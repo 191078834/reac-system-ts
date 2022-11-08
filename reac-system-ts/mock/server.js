@@ -32,7 +32,7 @@ const getData = (filename, res, req) => {
                 let jsonElement = {
                     "id": index + 1,
                     "word": newElement[0],
-                    "loumazi": newElement[1],
+                    "lomazi": newElement[1],
                     "translate": newElement[2],
                     "putTime": newElement[3]
                 }
@@ -54,7 +54,7 @@ const getData = (filename, res, req) => {
         if (req.query.word !== undefined || req.query.fromTime !== undefined || req.query.toTime !== undefined) {
             let retData = []
             if (req.query.word !== '') {
-                retData = data.filter((element) => element.loumazi.includes(req.query.word) === true)
+                retData = data.filter((element) => element.lomazi.includes(req.query.word) === true)
             }
             res.json({ "data": retData })
             return
@@ -130,8 +130,6 @@ const checkWord = (filename, res, req) => {
             res.json({ "status": "ok", message: "単語を追加しました" })
         }
 
-
-        // res.json({ "data": retData })
     }
     )
 
@@ -161,7 +159,7 @@ const allowCrossDomain = (req, res, next) => {
 };
 app.use(allowCrossDomain);
 
-// create mock data
+// ===============================create mock data================================================================
 let data = Mock.mock({
     "data|6": [ //生成6条数据 数组
         {
@@ -189,10 +187,12 @@ let data = Mock.mock({
         }
     ]
 })
+// mockjs中属性名‘|’符号后面的属性为随机属性，数组对象后面的随机属性为随机数组数量，正则表达式表示随机规则，+1代表自增
 
 // Mock.mock(/search\/text/, 'get', () => { //三个参数。第一个：路径，第二个：请求方式post/get，第三个：回调，返回值
 //     return data
 // })
+//================================================================================================================
 
 /**
  * @param  {[type]} req  [客户端发过来的请求所带数据]
@@ -200,7 +200,6 @@ let data = Mock.mock({
  */
 app.get('/wordlist/search', function (req, res) {
     /**
-     * mockjs中属性名‘|’符号后面的属性为随机属性，数组对象后面的随机属性为随机数组数量，正则表达式表示随机规则，+1代表自增
      */
     /* 设置定时器 为了设置isLoad Status */
     // setTimeout(function () { res.json(data); }, 5000);
