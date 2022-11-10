@@ -46,6 +46,9 @@ https://www.sohu.com/a/456083319_463970
 
 //　2022/11/07  npm i date-fns
 
+//react practice
+https://contactmentor.com/best-react-projects-for-beginners-easy/
+
 
 
 

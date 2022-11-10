@@ -11,7 +11,7 @@ import {
 import { dashBoardTheme } from "./dashBoardTheme"
 
 import App from './pages/App/App';
-import TestApp from './pages/TestApp/TestApp';
+import ForgetList from './pages/ForgetList/ForgetList';
 import EveryDayWord from './pages/EveryDayWord/EveryDayWord';
 import Kakunin from './pages/EveryDayWord/Kakunin';
 // import WordList from './pages/WordList/WordList';
@@ -28,9 +28,9 @@ root.render(
         <Routes>
           <Route path="/*" element={<App />}>
             {/* <Route path="wordlist" element={<WordList />} /> */}
-            <Route path="forgetlist" element={<TestApp />} />
+            <Route path="forgetlist" element={<ForgetList />} />
             <Route path="everydayword/*" element={<EveryDayWord />} />
-              <Route path="everydayword/kakunin/*" element={<Kakunin />} />
+            <Route path="everydayword/kakunin/*" element={<Kakunin />} />
 
           </Route>
         </Routes>

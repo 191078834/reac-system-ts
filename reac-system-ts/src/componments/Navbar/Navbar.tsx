@@ -34,17 +34,17 @@ const Navbar: React.FC<{}> = () => {
       <Toolbar />
       <Divider />
       <List>
-        {mainNavBarItems.map(({ id, icon, label, route }: mainNavBarItem) => (
+        {mainNavBarItems.map((item: mainNavBarItem) => (
           <ListItem button
-            key={id}
+            key={item.id}
             disablePadding
-            onClick={() => navigate(route as To)}
+            onClick={() => navigate(item.route as To)}
           >
             <ListItemButton>
               <ListItemIcon sx={{ color: 'rgb(255, 255, 255, 0.7)' }}>
-                {icon}
+                {item.icon}
               </ListItemIcon>
-              <ListItemText primary={label} />
+              <ListItemText primary={item.label} />
             </ListItemButton>
           </ListItem>
         ))}

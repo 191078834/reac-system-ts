@@ -6,8 +6,8 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 export interface mainNavBarItem {
     id: number,
     icon: any,
-    label: String,
-    route: String
+    label: string,
+    route: string
 }
 export const mainNavBarItems: Array<mainNavBarItem> = [
     {
