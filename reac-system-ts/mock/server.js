@@ -25,24 +25,24 @@ const getData = (filename, res, req) => {
 
         let FileArrayresult = await fn(fileName).then((result) => {
             var newRowArr = result.split(/\r/);
-            var Allarray = Array.of(newRowArr.length);
+            var Allarray = [];
             newRowArr.forEach((element, index) => {
                 let newElement = element.replace(/\n/, '').split(/\s/)
                 // push /unshift /contact
                 let jsonElement = {
-                    "id": index + 1,
-                    "word": newElement[0],
-                    "lomazi": newElement[1],
-                    "translate": newElement[2],
-                    "putTime": newElement[3]
+                    id: index + 1,
+                    word: newElement[0],
+                    lomazi: newElement[1],
+                    translate: newElement[2],
+                    putTime: newElement[3]
                 }
                 Allarray.push(jsonElement);
-
+                
             });
             //删除最后一个元素
             // Allarray.pop();
             //删除第一个元素
-            Allarray.shift()
+            
             return Allarray
         }).then(data => data)
 
@@ -83,7 +83,7 @@ const checkWord = (filename, res, req) => {
 
         let FileArrayresult = await fn(fileName).then((result) => {
             var newRowArr = result.split(/\r/);
-            var Allarray = Array.of(newRowArr.length);
+            var Allarray= []
             newRowArr.forEach((element, index) => {
                 let newElement = element.replace(/\n/, '').split(/\s/)
                 // push /unshift /contact
@@ -100,7 +100,6 @@ const checkWord = (filename, res, req) => {
             //删除最后一个元素
             // Allarray.pop();
             //删除第一个元素
-            Allarray.shift()
             return Allarray
         }).then(data => data)
 
