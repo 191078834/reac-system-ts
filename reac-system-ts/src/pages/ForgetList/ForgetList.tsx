@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Box from '@mui/material/Box';
-import { Grid, TextField } from '@mui/material';
+import { Button, Grid, TextField } from '@mui/material';
+import DIivBox from './DIivBox'
 
 
 export type iData = {
@@ -54,24 +55,22 @@ const ForgetList: React.FC<{}> = () => {
         console.log('slice()参数：①返回元素开始索引，②结束索引,复制特定一段的数组arg1<newArray<=arg2', newArray2)
         // 等待更新
         console.log('splice()会改变原数组')
-        console.log()
-        console.log()
-
-
-
-
-
-
-
-
-
+        setTesString('w')
+        setAge(22)
 
 
 
 
         // e.preventDefault();
     }
-
+    const [count, setCount] = React.useState<number>(0)
+    // let tesString = React.useMemo(() => ('ewew'), [count])
+    const [tesString, setTesString] = React.useState<any>('jlkj')
+    const [age, setAge] = React.useState<any>(5)
+    const dax = React.useMemo(() => ({ tesString, age }), [age, tesString])
+    const handeler = React.useCallback(() => {
+        console.log('count:', count)
+    }, [age])
 
 
     return (
@@ -88,18 +87,16 @@ const ForgetList: React.FC<{}> = () => {
                         onChange={handleSubmit}
                     />
                 </Grid>
-                {testArray.map((item: iData, index: number) => (
-                    <Box key={index.toString()}>{item.lastname}<Box>{item.firstname}</Box> <Box>{item.currend}</Box></Box>
+                <Grid item>
+                    <Button onClick={() => setCount(count + 1)} variant="outlined">
+                        test
+                    </Button>
+                </Grid>
 
 
-
-
-
-                )
-
-                )}
                 {/* <Grid item xs={4}></Grid> */}
             </Grid>
+            <DIivBox arrayItems={arrayNames} args={dax} fn={handeler} />
         </Box>
 
     )
