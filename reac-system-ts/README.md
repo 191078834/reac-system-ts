@@ -49,6 +49,21 @@ https://www.sohu.com/a/456083319_463970
 //react practice
 https://contactmentor.com/best-react-projects-for-beginners-easy/
 
+//react 源码调试 选修
+https://zhuanlan.zhihu.com/p/548297074
+1. git clone https://github.com/facebook/react
+2. npm install yarn -g
+3. yarn install
+4. 修改build.js文件  path react\scripts\rollup\build.js
+5.  npm run build
+6. C:reactsource code\react\build\node_modules\react\umd  可看到map文件
+
+99. // https://react.iamkasong.com/ 电子书
+
+
+
+
+
 
 
 
