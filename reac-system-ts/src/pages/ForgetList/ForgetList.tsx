@@ -72,7 +72,7 @@ const ForgetList: React.FC<{}> = () => {
         console.log('count:', count)
     }, [age])
 
-    React.useEffect(()=>{
+    React.useEffect(() => {
         setAge(22);
         console.log('print111')
     })
