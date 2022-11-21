@@ -14,7 +14,7 @@ import App from './pages/App/App';
 import ForgetList from './pages/ForgetList/ForgetList';
 import EveryDayWord from './pages/EveryDayWord/EveryDayWord';
 import Kakunin from './pages/EveryDayWord/Kakunin';
-// import WordList from './pages/WordList/WordList';
+import WordList from './pages/WordList/WordList';
 
 
 const root = ReactDOM.createRoot(
@@ -27,7 +27,7 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/*" element={<App />}>
-            {/* <Route path="wordlist" element={<WordList />} /> */}
+            <Route path="wordlist" element={<WordList />} />
             <Route path="forgetlist" element={<ForgetList />} />
             <Route path="everydayword/*" element={<EveryDayWord />} />
             <Route path="everydayword/kakunin/*" element={<Kakunin />} />

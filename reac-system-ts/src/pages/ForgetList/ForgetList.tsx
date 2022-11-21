@@ -53,14 +53,27 @@ const ForgetList: React.FC<{}> = () => {
         console.log('concat()它的参数添加到副本末尾，最后返回这个新构建的数组', newArray)
         let newArray2 = arrayNames.slice(1, 3)
         console.log('slice()参数：①返回元素开始索引，②结束索引,复制特定一段的数组arg1<newArray<=arg2', newArray2)
-        // 等待更新
-        console.log('splice()会改变原数组')
+        //splice(()
+        console.log('splice()会改变原数组 多种用法①插入②删除③替换')
+        //搜索位置方法 includes()
+        console.log('返回boolean', arrayNames.includes({ firstname: '0', lastname: '0', currend: '0' }))
+        //搜索元素 find findIndex
+        console.log('返回第一次匹配到的元素', arrayNames.find((element) => element.firstname === 'third'))
+        //搜索元素 返回所有元素
+        console.log(arrayNames.filter((element) => element.lastname === 'maggli'))
+
+        //every()与所有函数返回true则返回true
+        console.log(arrayNames.every((element) => element.lastname.length > 5))
+        console.log(arrayNames)
+        //some() 如果对有一项函数返回true，则返回true
+        console.log(arrayNames.some((element) => element.lastname.length > 2))
+
+        //归并方法 （reduce、reduceRight） wait updating
+
+
+
         setTesString('w')
         setAge(22)
-
-
-
-
         // e.preventDefault();
     }
     const [count, setCount] = React.useState<number>(0)
@@ -74,7 +87,7 @@ const ForgetList: React.FC<{}> = () => {
 
     React.useEffect(() => {
         setAge(22);
-        console.log('print111')
+        console.log('end')
     })
 
 
