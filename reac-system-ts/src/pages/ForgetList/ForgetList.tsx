@@ -34,9 +34,9 @@ const ForgetList: React.FC<{}> = () => {
 
         console.log('keys()，values()，entries()  返回Iterator对象')
         console.log('Array.of : 返回的数组为传入的输值', Array.of(e.target.value))
-        console.log('Array.from : 返回的获数组为下标数组 keys：下标', Array.from(testArray.keys()))
-        console.log('Array.from : 返回的获数组为数组值', Array.from(testArray.values()))
-        console.log('Array.from : 相当于zip方法', Array.from(testArray.entries()))
+        console.log('Array.keys : 返回的获数组为下标数组 keys：下标', Array.from(testArray.keys()))
+        console.log('Array.values : 返回的获数组为数组值', Array.from(testArray.values()))
+        console.log('Array.entires : 相当于zip方法', Array.from(testArray.entries()))
         console.log('判断是否为数组', Array.isArray(testArray))
         console.log("以下会改变原数组")
         console.log("push() : 返回添加后的数组长度 ", arrayNames.push({ firstname: 'new', lastname: 'new', currend: timeTostring }))
