@@ -1,4 +1,4 @@
-git使用方法
+initgit使用方法
 
 git init
 git config --local user.name 191078834
@@ -12,14 +12,11 @@ ssh-keygen -t rsa -C "191078834@qq.com"
 
 rm fileName  
 git add fileName
+
 git commit -m ''
 git push
 
-删除本地文件 即使下次pull 也不会把本地删除的文件更新回来
-git rm fileName
-git add fileName
-git commit -m ''
-git push
+删除本地文件 即使下次pull 也不会把本地删除的文件更。
 
 
 git checkout -- fileName 恢复缓存区文件
@@ -82,13 +79,6 @@ git branch -d 分支名
 删除远端分支
 git push origin --delete 分支名
 
-
-
-
-
-
-
-
 ①新しいリポジトリを新規する
 
 echo "# reactSystem" >> README.md
@@ -103,3 +93,6 @@ git push -u origin main
 git remote add origin https://github.com/191078834/reactSystem.git
 git branch -M main
 git push -u origin main	
+
+
+

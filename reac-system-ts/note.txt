@@ -1,0 +1,16 @@
+**********************************************************************************************
+
+// https://blog.csdn.net/qq_36171287/article/details/125777012
+infer的使用
+1.infer只能在extends关键字的右侧
+2.infer x可以理解成一个未知数x，表示待推断的函数参数
+示例1： 获取传入的参数类型中的action，如果传入的T中没有action，则会返回never
+type ParamType<T> = T extends { action: infer X } ? X : never;
+示例2： 解包，获取在数组中的元素类型
+type ParamType<T> = T extends (infer X)[] ? X : never;
+// c1类型为number | string
+let c1: ParamType<number[] | string[]> = 10
+示例3： 元组tuple转联合union
+type ParamType<T> = T extends (infer X)[] ? X : never;
+// c1类型为number | string
+let c1: ParamType<[string, number]> = 10
