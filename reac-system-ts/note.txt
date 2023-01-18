@@ -14,3 +14,5 @@ let c1: ParamType<number[] | string[]> = 10
 type ParamType<T> = T extends (infer X)[] ? X : never;
 // c1类型为number | string
 let c1: ParamType<[string, number]> = 10
+
+https://zhuanlan.zhihu.com/p/348388489
